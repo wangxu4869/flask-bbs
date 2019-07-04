@@ -3,6 +3,7 @@ from flask_mail import Message
 from exts import mail,alidayu
 from flask import Flask
 import config
+from utils import smssender
 
 app = Flask(__name__)
 app.config.from_object(config)
@@ -39,4 +40,4 @@ def send_mail(subject,recipients,body):
 
 @celery.task
 def send_sms_captcha(telephone,captcha):
-    alidayu.send_sms(telephone,code=captcha)
+    smssender.send(telephone,captcha)

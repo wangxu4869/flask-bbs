@@ -2,7 +2,7 @@ import os
 
 SECRET_KEY=os.urandom(24)
 
-
+DEBUG=False
 
 HOSTNAME = '127.0.0.1'
 PORT = '3306'

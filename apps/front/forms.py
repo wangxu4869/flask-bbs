@@ -17,7 +17,10 @@ class SignupForm(BaseForm):
 
             # if sms_captcha!='1111':
             sms_captcha_mem=zlcache.get(telephone)
+            print('缓存中的短信验证码:'+sms_captcha_mem)
+            print('发送的验证码:'+sms_captcha)
             if not sms_captcha_mem or sms_captcha.lower() != sms_captcha_mem.lower():
+                print('短信验证码错误!!!!!!!!!!')
                 raise ValidationError(message='短信验证码错误！')
 
     def validate_graph_captcha(self,field):

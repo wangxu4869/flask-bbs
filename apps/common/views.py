@@ -21,8 +21,7 @@ def sms_captcha():
     if form.validate():
         telephone=form.telephone.data
         captcha=Captcha.gene_text(number=4)
-        print(telephone)
-        print(captcha)
+        zlcache.set(telephone,captcha)
         #感觉此处应该加delay老师没加
         send_sms_captcha.delay(telephone,captcha)
         return restful.success()

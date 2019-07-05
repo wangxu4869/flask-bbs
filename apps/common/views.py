@@ -6,7 +6,7 @@ from .forms import SMSCaptchaForm
 from io import BytesIO
 import qiniu
 from tasks import send_sms_captcha
-# from utils import smssender
+from utils import smssender
 
 bp=Blueprint('common',__name__,url_prefix='/c')
 
@@ -21,11 +21,11 @@ def sms_captcha():
     if form.validate():
         telephone=form.telephone.data
         captcha=Captcha.gene_text(number=4)
+        print(telephone)
+        print(captcha)
         #感觉此处应该加delay老师没加
         send_sms_captcha.delay(telephone,captcha)
-        # smssender.send(telephone,captcha)
         return restful.success()
-
     else:
         return restful.params_error(message='参数错误！')
 

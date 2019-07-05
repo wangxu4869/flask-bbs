@@ -7,7 +7,7 @@ class SMSCaptchaForm(BaseForm):
     salt='dijqh13iehq08342i213j02'
     telephone=StringField(validators=[regexp(r'1[345789]\d{9}')])
     timestamp=StringField(validators=[regexp(r'\d{13}')])
-    sign=StringField(validators=InputRequired())
+    sign=StringField(validators=[InputRequired()])
 
     def validate(self):
         result=super(SMSCaptchaForm, self).validate()
